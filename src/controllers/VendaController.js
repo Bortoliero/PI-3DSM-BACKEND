@@ -1,5 +1,5 @@
 const prisma = require('../config/prisma.js')
-const VendaService = require('../services/vendaService.js')
+const VendaService = require('../services/VendaService.js')
 
 class VendaController {
     constructor(){

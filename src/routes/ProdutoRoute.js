@@ -1,4 +1,4 @@
-const ProdutoController = require('../controllers/produtoController.js')
+const ProdutoController = require('../controllers/ProdutoController.js')
 
 class ProdutoRoute {
   constructor(app){
