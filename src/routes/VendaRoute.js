@@ -1,21 +1,12 @@
-const VendaController = require('../controllers/VendaController.js');
+const { Router } = require( "express")
+const router = Router();
 
-class VendaRoute {
-  constructor(app) {
-    this.controller = new VendaController();
-    this.app = app;
-    this.setupRoutes();
-  }
+const { findAll, findById, create, update, destroy } = require('../controllers/VendaController.js')
 
-  setupRoutes() {
-    this.app.get('/venda', this.controller.findAll.bind(this.controller));
-    this.app.get('/venda/:id', this.controller.findById.bind(this.controller));
-    this.app.post('/venda', this.controller.create.bind(this.controller));
-    this.app.put('/venda/:id', this.controller.update.bind(this.controller));
-    this.app.delete('/venda/:id', this.controller.delete.bind(this.controller));
-  }
-}
+router.route('/').get(findAll)
+router.route('/:id').get(findById)
+router.route('/').post(create)
+router.route('/:id').put(update)
+router.route('/:id').delete(destroy)
 
-module.exports = (app) => {
-  return new VendaRoute(app);
-};
+module.exports = router;
