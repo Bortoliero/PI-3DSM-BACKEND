@@ -23,24 +23,26 @@ exports.findById = async  (req, res) => {
     }
 }
 
-exports.create = async   (req, res) => {
-try {
-    const { nome, preco, classificacao, cor, espessura } = req.body;
-    const novoVenda = await prisma.produto.create({
-    data: {
-        nome,
-        preco,
-        classificacao,
-        cor,
-        espessura
-    },
-    });
-    res.status(201).json(novoVenda);
-} catch (error) {
-    console.error(error);
-    res.status(500).json({ error: 'Não foi possível criar.' });
-}
-}
+exports.create = async (req, res) => {
+    try {
+      const { cliente_id, data_pedido, quantidade, produto_id } = req.body;
+  
+      const novoVenda = await prisma.venda.create({
+        data: {
+          itens: {},
+          cliente_id,
+          data_pedido,
+          quantidade,
+          produto_id,
+        },
+      });
+  
+      res.status(201).json(novoVenda);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: 'Não foi possível criar a venda.' });
+    }
+  }
 
 exports.update = async  (req, res) => {
     try {

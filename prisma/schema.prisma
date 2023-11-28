@@ -38,10 +38,11 @@ model Tipo {
 
 model Venda {
   id          String    @id @default(auto()) @map("_id") @db.ObjectId
-  itens       Json
-  cliente_id  String    @db.ObjectId
-  cliente     Cliente   @relation(fields: [cliente_id], references: [id])
-  data_pedido DateTime
+  itens       Json?
+  cliente_id  String?    @db.ObjectId
+  cliente     Cliente?   @relation(fields: [cliente_id], references: [id])
+  data_pedido DateTime?
+  quantidade  Int?
   produto_id  String[]  @db.ObjectId
   produtos    Produto[] @relation(fields: [produto_id], references: [id])
 }
